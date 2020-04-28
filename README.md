@@ -5,7 +5,7 @@
 **Clone and run for a quick way to see ChatMC in action.**
 ```
 git clone https://github.com/RKStudioTM/ChatMC
-cd ELECTRON-4-PHP
+cd ChatMC
 npm install
 npm start
 ```
