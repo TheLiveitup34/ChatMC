@@ -1,10 +1,10 @@
-![alt text](https://github.com/AJ-TechSoul/ELECTRON-4-PHP/blob/master/electron4php.jpg?raw=true)
+![alt text](https://raw.githubusercontent.com/RKStudioTM/ChatMC/master/icons/icon.png)
 # ChatMC
 - *For now its only supports Windows.*
 
-**Clone and run for a quick way to see Electron4PHP in action.**
+**Clone and run for a quick way to see ChatMC in action.**
 ```
-git clone https://github.com/AJ-TechSoul/ELECTRON-4-PHP/
+git clone https://github.com/RKStudioTM/ChatMC
 cd ELECTRON-4-PHP
 npm install
 npm start
