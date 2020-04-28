@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <!-- Loads in Icon Font From Googles Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Loads In Materialize Framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Shortend CSS StyleSheet -->
+    <link rel="stylesheet" type="text/css" href="data:text/css;base64,LmNvbnRyb2wtYm94e3Bvc2l0aW9uOmZpeGVkO3RvcDoxcmVtO3JpZ2h0OjFyZW19Ojotd2Via2l0LXNjcm9sbGJhcnt3aWR0aDoxMHB4fTo6LXdlYmtpdC1zY3JvbGxiYXItdHJhY2t7YmFja2dyb3VuZDojMjEyMTIxfTo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWJ7YmFja2dyb3VuZDojZmZlZTU4fTo6LXdlYmtpdC1zY3JvbGxiYXItdGh1bWI6aG92ZXJ7YmFja2dyb3VuZDojZmRkODM1fQ==">
+    <title>ChatMC</title>
+  </head>
+  <body class="grey darken-4 white-text">
+    <!-- Start of Control Box -->
+    <div class="control-box">
+      <div class="row" id="controls">
+
+        <div class="col">
+          <a href="#" class="btn-floating btn-small yellow darken-1 tooltipped" data-controller="reload"  data-position="bottom" data-tooltip="Reload">
+            <i class="material-icons">autorenew</i>
+            <!-- Button to Refresh the Chat -->
+          </a>
+        </div>
+        <div class="col">
+          <a href="#" class="btn-floating btn-small red tooltipped" data-controller="clear"  data-position="bottom" data-tooltip="Clear">
+            <i class="material-icons">close</i>
+            <!-- Button to Clear the Chat -->
+          </a>
+        </div>
+      </div>
+    </div>
+    <!-- End of Control Box -->
+
+    <!-- Chat Box Start -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col s12">
+          <!-- Element to Display Chats From .minecraft/logs/latest.log -->
+          <ul id="chatbox"></ul>
+        </div>
+      </div>
+    </div>
+    <!-- Chat Box End -->
+
+      <!-- Loads in Materalize Javascript file for Modal Display -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script type="text/javascript">
+        // Initalizes All Materalize Javascript Items;
+        M.AutoInit();
+      </script>
+      <!-- Loads In Chat Events  -->
+      <script src="./renderer.js"></script>
+    </body>
+  </html>
