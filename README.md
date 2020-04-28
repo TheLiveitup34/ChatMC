@@ -2,6 +2,9 @@
 # ChatMC
 - *For now its only supports Windows.*
 
+**Latest Download Packaged Version**
+https://chatmc.io/dist/chatmc.zip
+
 **Clone and run for a quick way to see ChatMC in action.**
 ```
 git clone https://github.com/RKStudioTM/ChatMC
