@@ -4,19 +4,21 @@ const fs = require("fs");
 const app = remote.app;
 
 // Shell to open up links
-const {shell} = require('electron');
+const {
+  shell
+} = require('electron');
 
 // The Final path for %appdat%.minecraft logs location
-const path = app.getPath('userData').replace('ChatMC', '.minecraft') + "\\logs\\";
+const path = app.getPath('userData').replace('chatmc', '.minecraft') + "\\logs\\";
 
 // Gets the Chatbox Location
-const chatBox  = document.getElementById('chatbox');
+const chatBox = document.getElementById('chatbox');
 
 // Sets up last message variable
 let lastMessage;
 
 // Gets all Controllers
-let controllers =  document.querySelectorAll('a[data-controller]');
+let controllers = document.querySelectorAll('a[data-controller]');
 
 // Upon chat loading Gets older minecraft chat
 getChat(true);
@@ -33,7 +35,7 @@ setInterval(getChat, 500);
  *     |__|  |______/\____|__  /\______  /|____|   |___\_______  /\____|__  /_______  /
  *                           \/        \/                      \/         \/        \/
  *
-*/
+ */
 
 // Gets the Latest Chats messages from the Log File
 function getChat(flush = false) {
@@ -47,7 +49,6 @@ function getChat(flush = false) {
 
     // Sets Log data to data type String
     let log = data.toString();
-
     // Checks if Log file is empty
     if (log === "") {
       // Log file is empty upon minecraft booting up
@@ -65,19 +66,45 @@ function getChat(flush = false) {
     log.forEach((chat) => {
 
       // Checks if it is true chat message
-      if (chat.includes('[CHAT]') == true) {
+      if (chat.toLowerCase().includes('[chat]') == true) {
 
         // Removes Log format prefix (Minecraft 1.14+)
-        chat = chat.replace(' [main/INFO]: [CHAT] ', ' ');
-
-        // Removes Log format prefix (Minecraft 1.14-)
-        chat = chat.replace(' [Client thread/INFO]: [CHAT] ', ' ');
+        chat = chat.replace(/ \[(.*)\/(.*)\]: \[CHAT\] /, ' ');
 
         // Replaces color character with legable charactor for javascript
         chat = chat.replace(/�/g, '§');
 
         // Removes all Minecraft Color codes
-        chat = chat.replace(/§[0-9a-zA-Z]/g, '');
+        chat = chat.replace(/§r/g, '');
+
+
+        chat = chat.split('§');
+        for(let i = 0; i < chat.length; i++) {
+               switch (chat[i][0]) {
+                  case "0":
+                  case "1":
+                  case "2":
+                  case "3":
+                  case "4":
+                  case "5":
+                  case "6":
+                  case "7":
+                  case "8":
+                  case "9":
+                  case "a":
+                  case "b":
+                  case "c":
+                  case "d":
+                  case "e":
+                  case "f":
+
+                  chat[i] = changeColor(chat[i][0], chat[i].substring(1));
+
+                break;
+          }
+        }
+
+        chat = chat.join('');
 
         // Replaces all break lines in messages with HTML Break lines
         chat = chat.replace(/\\n/g, "<br>");
@@ -134,7 +161,7 @@ function addMessage(msg) {
   if (matches !== null) {
 
     // Runs through a loop to link all Hrefs to correct positions
-    for(i = 0; i < matches.length; i++) {
+    for (i = 0; i < matches.length; i++) {
 
       // Sets up the Hyperlink to be clicable
       msg = msg.replace(matches[i], `<a href="#" onclick="openLink(event,'${matches[i]}')" class="yellow-text text-darken-1" style="text-decoration: underline;">${matches[i]}</a>`);
@@ -157,7 +184,7 @@ function addMessage(msg) {
   chatBox.append(e);
 
   // Scrolls the the bottom of the site on new message
-  window.scrollTo(0,document.body.scrollHeight);
+  window.scrollTo(0, document.body.scrollHeight);
 }
 
 // To Open up links in default browsers
@@ -178,7 +205,7 @@ function materialFix() {
     // Checks if tooltip exits outside of viewport
     if (!isInViewport(tool)) {
       // Sets Tool tip postion and status to null
-      tool.style= "";
+      tool.style = "";
     }
   });
 
@@ -190,12 +217,37 @@ var isInViewport = function (elem) {
   // Gets elements bounding area
   var bounding = elem.getBoundingClientRect();
   return (
-      bounding.top >= 0 &&
-      bounding.left >= 0 &&
-      bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    bounding.top >= 0 &&
+    bounding.left >= 0 &&
+    bounding.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+    bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
   );
 };
+
+function changeColor(key,message) {
+  items = {
+    "0": 'color: #000000',
+    "1": 'color: #0000AA',
+    "2": 'color: #00AA00',
+    "3": 'color: #00AAAA',
+    "4": 'color: #AA0000',
+    "5": 'color: #AA00AA',
+    "6": 'color: #FFAA00',
+    "7": 'color: #AAAAAA',
+    "8": 'color: #555555',
+    "9": 'color: #5555FF',
+    "a": 'color: #55FF55',
+    "b": 'color: #55FFFF',
+    "c": 'color: #FF5555',
+    "d": 'color: #FF55FF',
+    "e": 'color: #FFFF55',
+    "f": 'color: #FFFFFF',
+  };
+
+  message = `<span style="${items[key]}">${message}</span>`;
+
+  return message;
+}
 
 /*
  *
@@ -206,7 +258,7 @@ var isInViewport = function (elem) {
  *  /_______  /   \___/   /_______  /\____|__  /____| /_______  /
  *          \/                    \/         \/               \/
  *
-*/
+ */
 
 // Fix the Fixed postion of the Materialized hover Events
 window.addEventListener('resize', materialFix);
@@ -221,13 +273,13 @@ controllers.forEach((controller) => {
     e.preventDefault();
 
     //Sets up a switch to Control outputs of Controller
-    switch(controller.dataset.controller) {
+    switch (controller.dataset.controller) {
 
       // Clears the ChatBox
       case "clear":
 
         // Checks if item exits in Chatbox and removes it
-        while(chatBox.firstChild) {
+        while (chatBox.firstChild) {
           // Removes the item in the Chatbox
           chatBox.removeChild(chatBox.firstChild);
         }
@@ -239,24 +291,24 @@ controllers.forEach((controller) => {
         // Runs Materialized Fix to fix scroll over area
         materialFix();
 
-      break; // End of Controller Clear
+        break; // End of Controller Clear
 
-      // Reloads chat if any information is missing
+        // Reloads chat if any information is missing
       case "reload":
 
 
         // Checks if item exits in Chatbox and removes it
-        while(chatBox.firstChild) {
+        while (chatBox.firstChild) {
           // Removes the item in the Chatbox
           chatBox.removeChild(chatBox.firstChild);
         }
         // Gets Every Message from the Minecraft latest.log file
         getChat(true);
 
-      break;
+        break;
       default:
-      // Does Nothing when Controller doesnt exist
-      break;
+        // Does Nothing when Controller doesnt exist
+        break;
     }
   });
 

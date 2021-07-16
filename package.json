@@ -1,5 +1,5 @@
 {
-  "name": "ChatMC",
+  "name": "chatmc",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
@@ -7,18 +7,24 @@
     "start": "electron .",
     "build": "electron-packager . ChatMC --out=dist/win --platform=win32 --arch=x64 --icon=icons/icon.ico --asar --overwrite"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/RKStudioTM/ChatMC",
   "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Minecraft",
+    "chat",
+    "external",
+    "youtube",
+    "streaming",
+    "recording",
+    "twitch"
   ],
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": ">=7.1.11",
     "electron-packager": ">=14.2.0"
+  },
+  "dependencies": {
+    "@electron/remote": "^1.2.0",
+    "update-electron-app": "^2.0.1"
   }
 }

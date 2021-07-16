@@ -17,7 +17,10 @@ app.on('ready', () => {
     backgroundColor: '#212121',
     show: false,
     webPreferences: {
-      nodeIntegration: true
+      webSecurity: false,
+      enableRemoteModule: true,
+      nodeIntegration: true,
+      contextIsolation: false,
     }
   });
   
