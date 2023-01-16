@@ -69,7 +69,7 @@ function getChat(flush = false) {
       if (chat.toLowerCase().includes('[chat]') == true) {
 
         // Removes Log format prefix (Minecraft 1.14+)
-        chat = chat.replace(/ \[(.*)\/(.*)\]: \[CHAT\] /, ' ');
+        chat = chat.replace(/ \[(.*)\/(.*)\]:(.*)\[CHAT\] /, ' ');
 
         // Replaces color character with legable charactor for javascript
         chat = chat.replace(/�/g, '§');
@@ -129,17 +129,21 @@ function getChat(flush = false) {
       });
 
     } else { // Runs when updating Messages
-
+      let bundle = [];
       // Reverses Array to load latest message first
       chats.reverse();
-
-      // Checks if message has been posted
-      if (chats[0] !== lastMessage) {
-        // Updates lastMessage to prevent duplication
-        lastMessage = chats[0];
-        // Sends to front end
-        addMessage(chats[0]);
+      for (i = 0; i < chats.length; i++) {
+        if (chats[i] !== lastMessage) {
+          bundle.push(chats[i]);
+        } else {
+          break;
+        }
       }
+      bundle.reverse();
+      bundle.forEach((chat) => {
+        lastMessage = chat;
+        addMessage(chat);
+      });
     }
 
   });
