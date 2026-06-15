@@ -1,6 +1,8 @@
-![alt text](https://raw.githubusercontent.com/RKStudioTM/ChatMC/master/icons/icon.png)
+![](https://raw.githubusercontent.com/RKStudioTM/ChatMC/master/icons/icon.png =250x)
 # ChatMC
-- *For now its only supports Windows.*
+[![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/TheLiveitup34/chatmc)
+- *Tested on Windows, Let me know for the Linux/MacOS versions*
+- Tested and works with: Official Minecraft Launcher, Modrinth, Prisim Launcher, Cursforge Launcher, GDLauncher, ATLauncher, FTB, Lunar Client, and may work with more but not tested and is automatic detection should handle all Java Launchers for the most part!
 
 **Latest Download Packaged Version**
 [Github Releases](https://github.com/TheLiveitup34/ChatMC/releases)
