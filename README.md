@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/RKStudioTM/ChatMC/master/icons/icon.png =250x)
+![image](https://raw.githubusercontent.com/RKStudioTM/ChatMC/master/icons/icon.png)
 # ChatMC
 [![DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/TheLiveitup34/chatmc)
 - *Tested on Windows, Let me know for the Linux/MacOS versions*
