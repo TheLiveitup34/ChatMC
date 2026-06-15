@@ -1,30 +1,117 @@
 {
   "name": "chatmc",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "See your Minecraft chat on a second screen",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . ChatMC --out=dist/win --platform=win32 --arch=x64 --icon=icons/icon.ico --asar --overwrite"
+    "watch": "nodemon --watch . --ext js,html,json --ignore dist/ --ignore node_modules/ --exec electron .",
+    "build": "electron-builder",
+    "publish": "electron-builder --publish always"
   },
-  "repository": "https://github.com/RKStudioTM/ChatMC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/theliveitup34/chatmc"
+  },
+  "author": "TheLiveitup34",
+  "license": "CC0-1.0",
   "keywords": [
     "Minecraft",
     "chat",
     "external",
-    "youtube",
-    "streaming",
-    "recording",
-    "twitch"
+    "streaming"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
   "devDependencies": {
-    "electron": ">=7.1.11",
-    "electron-packager": ">=14.2.0"
+    "electron": "^29.0.0",
+    "electron-builder": "^24.13.3",
+    "nodemon": "^3.1.14"
   },
   "dependencies": {
-    "@electron/remote": "^1.2.0",
-    "update-electron-app": "^2.0.1"
+    "chokidar": "^3.6.0",
+    "electron-updater": "^6.1.8"
+  },
+  "build": {
+    "appId": "com.theliveitup34.chatmc",
+    "productName": "ChatMC",
+    "copyright": "Copyright © 2024 TheLiveitup34",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "theliveitup34",
+        "repo": "chatmc"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icons/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "ChatMC"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "icons/icon.png",
+      "category": "public.app-category.utilities"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "rpm",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "icons/icon.png",
+      "category": "Utility"
+    },
+    "files": [
+      "**/*",
+      "!dist/**",
+      "!node_modules/.cache/**",
+      "!**/*.md",
+      "!.github/**"
+    ],
+    "directories": {
+      "output": "dist"
+    }
   }
 }

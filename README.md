@@ -3,11 +3,11 @@
 - *For now its only supports Windows.*
 
 **Latest Download Packaged Version**
-https://chatmc.io/dist/chatmc.zip
+[Github Releases](https://github.com/TheLiveitup34/ChatMC/releases)
 
 **Clone and run for a quick way to see ChatMC in action.**
 ```
-git clone https://github.com/RKStudioTM/ChatMC
+git clone https://github.com/TheLiveitup34/ChatMC
 cd ChatMC
 npm install
 npm start
@@ -29,7 +29,7 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/RKStudioTM/ChatMC
+git clone https://github.com/TheLiveitup34/ChatMC
 # Go into the repository
 cd ChatMC
 # Install dependencies
