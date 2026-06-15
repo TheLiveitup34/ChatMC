@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "watch": "nodemon --watch . --ext js,html,json --ignore dist/ --ignore node_modules/ --exec electron .",
-    "build": "electron-builder",
+    "build": "electron-builder --publish never",
     "publish": "electron-builder --publish always"
   },
   "repository": {
