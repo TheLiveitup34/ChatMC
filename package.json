@@ -13,7 +13,10 @@
     "type": "git",
     "url": "https://github.com/theliveitup34/chatmc"
   },
-  "author": "TheLiveitup34",
+  "author": {
+    "name": "TheLiveitup34",
+    "email": "contact@rkstudio.com"
+  },
   "license": "CC0-1.0",
   "keywords": [
     "Minecraft",
